@@ -7,26 +7,27 @@ class FormularioCadastro extends Component {
     this.titulo = "";
     this.texto = "";
   }
-  _criarNota(evento) {
-    evento.preventDefault();
-    evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto)
-  }
 
   _handleMudancaTitulo(evento) {
     evento.stopPropagation();
-    this.titulo = evento.target.value
+    this.titulo = evento.target.value;
   }
 
   _handleMudancaTexto(evento) {
     evento.stopPropagation();
-    this.texto = evento.target.value
+    this.texto = evento.target.value;
   }
 
+  _criarNota(evento) {
+    evento.preventDefault();
+    evento.stopPropagation();
+    this.props.criarNota(this.titulo, this.texto);
+
+  }
 
   render() {
     return (
-      <form className="form-cadastro "
+      <form className="form-cadastro"
         onSubmit={this._criarNota.bind(this)}
       >
         <input
