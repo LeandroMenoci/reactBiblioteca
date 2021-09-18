@@ -1,15 +1,31 @@
-import React, { Component } from 'react';
-import FormularioCadastros from './components/formularioCadastro';
-import ListaDeNotas from './components/listaDeNotas';
-
-function App() {
-  return (
-    <section>
-      <FormularioCadastros />
-      <ListaDeNotas />
-    </section >
-  );
+import React, { Component } from "react";
+import ListaDeNotas from "./components/ListaDeNotas";
+import FormularioCadastro from "./components/FormularioCadastro";
+import "./assets/App.css";
+import './assets/index.css';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      notas: []
+    }
+  }
+  criarNota(titulo, texto) {
+    const novaNota = { titulo, texto };
+    const novoArrayNotas = [...this.state.notas, novaNota]
+    const novoEstado = {
+      notas: novoArrayNotas
+    }
+    this.setState(novoEstado)
+  }
+  render() {
+    return (
+      <section className="conteudo">
+        <FormularioCadastro criarNota={this.criarNota.bind(this)} />
+        <ListaDeNotas notas={this.state.notas} />
+      </section>
+    );
+  }
 }
-//react -> lib facebook
-//React -> ecossistema
+
 export default App;
